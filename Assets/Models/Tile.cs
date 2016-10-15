@@ -84,7 +84,8 @@ namespace Assets
             //setting up the URL
             var tilename = Application.persistentDataPath + "/" + realPos.x + "_" + realPos.y;
             var tileurl = realPos.x + "/" + realPos.y;
-            var url = "http://vector.mapzen.com/osm/water,earth,buildings,roads,landuse/" + zoom + "/";
+			var url = "http://tile.mapzen.com/mapzen/vector/v1/all/" + zoom + "/";
+			var api = "mapzen-xxxxxx";//<-paste your api key here IMPORTANT!!!!;
 
             //Debug.Log(url);
             JSONObject mapData;
@@ -98,7 +99,8 @@ namespace Assets
             }
             else
             {
-                var www = new WWW(url + tileurl + ".json");
+                if (api == "mapzen-xxxxxxx")print ("you sould get api key from https://mapzen.com/documentation/search/api-keys-rate-limits/#get-an-api-key and replacei it in TILE.cs line 88");
+				var www = new WWW(url + tileurl + ".json?api_key=" + api);
                 yield return www;
                 
                 var sr = File.CreateText(tilename);
